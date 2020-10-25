@@ -1,0 +1,28 @@
+<h1>Введите данные</h1>
+<form
+        action="/news"
+        method="post"
+>
+    <label>Новости</label><br>
+
+    <select name="tag">
+        {{#each tagTypes}}
+            <option
+                    value="{{ tag }}" {{#if selected }}
+                    selected {{/if}}
+            >
+                {{ tag }}
+            </option>
+        {{/each}}
+    </select>
+    <label>Количество</label><br>
+    <input
+            type="number"
+            name="countNews"
+            value={{ count }}
+    />
+    <input
+            type="submit"
+            value="Показать"
+    />
+</form>
