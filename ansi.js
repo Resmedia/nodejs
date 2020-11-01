@@ -9,4 +9,3 @@ cursor.white().bg.green().write('Test message!').reset().bg.reset().write('\n');
 
 console.log("Hello!");
 console.log(User.data());
-
