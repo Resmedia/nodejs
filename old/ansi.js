@@ -1,6 +1,6 @@
 //import ansi from 'ansi' //ES module //ADM
 
-const ansi = require('ansi'); //Common JS
+const ansi = require('old/ansi'); //Common JS
 const User = require('./User');
 
 const cursor = ansi(process.stdout);

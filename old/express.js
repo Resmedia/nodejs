@@ -2,7 +2,7 @@ const path = require('path');
 const request = require('request');
 const cheerio = require('cheerio');
 const templating = require('consolidate');
-const express = require('express');
+const express = require('old/express');
 const bodyParser = require('body-parser');
 
 const port = 3000;

@@ -1,0 +1,41 @@
+version: '3'
+services:
+  mongo:
+    container_name: mongo
+    image: mongo:4.0.0
+    environment:
+      TZ: "Europe/Moscow"
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_volume:/data/db
+    networks:
+      - nodejs
+
+  node:
+    container_name: node
+    image: node:10-slim
+    command: bash -c "yarn && yarn start"
+    tty: true
+    restart: always
+    environment:
+      TZ: "Europe/Moscow"
+      NODE_APP_INSTANCE: develop
+      SERVER_HOST: 0.0.0.0
+    ports:
+      - 4000:4000
+    expose:
+      - "4000"
+    working_dir: /var/www/html
+    volumes:
+      - ./node:/var/www/html
+    networks:
+      - nodejs
+
+volumes:
+  mongo_volume: {}
+  redis_volume: {}
+
+networks:
+    nodejs:
+      external: false

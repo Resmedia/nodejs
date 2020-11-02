@@ -1,5 +1,5 @@
 const readLine = require('readline');
-const translate = require('translate');
+const translate = require('old/translate');
 
 const catcher = readLine.createInterface({
   input: process.stdin,
