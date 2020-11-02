@@ -1,0 +1,64 @@
+<div style="display: flex; flex-direction: column; align-items: center">
+    <ol>
+        {{# each tasks}}
+            <li style="display: flex; align-items: center;">
+
+                <label
+                        for="{{_id}}"
+                        style="display: flex; align-items: center; {{#if completed }} text-decoration: line-through;  {{/if}}"
+                >
+                    {{ title }}
+                </label>
+                <input
+                        id="{{_id}}"
+                        type="checkbox"
+                        value="{{ tag }}" {{#if completed }}
+                        checked {{/if}}
+                        onclick="checkedItem('{{_id}}', {{completed}})"
+                />
+                <button onclick="deleteItem('{{_id}}')">Удалить</button>
+            </li>
+        {{/each}}
+    </ol>
+    <form
+            action="/tasks"
+            method="post"
+    >
+        <label>
+            <input
+                    name="title"
+                    style="padding: 1rem 1.4rem"
+                    type="text"
+            />
+        </label>
+        <input
+                type="submit"
+                value="Добавить задачу"
+        />
+    </form>
+</div>
+<script>
+    deleteItem = (_id) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open('DELETE', `/tasks/${_id}`);
+        xhr.onreadystatechange = function () {
+            if (xhr.status === 200) {
+                window.location.href = '/tasks';
+            }
+        };
+        xhr.send();
+    };
+    checkedItem = (_id, completed) => {
+        fetch(`/tasks/${_id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ completed: !completed  }),
+        }).then((response) => {
+            if (response.ok) {
+                window.location.href = '/tasks';
+            }
+        });
+    };
+</script>
