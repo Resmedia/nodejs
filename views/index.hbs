@@ -5,16 +5,6 @@
 >
     <label>Новости</label><br>
 
-    <select name="tag">
-        {{#each tagTypes}}
-            <option
-                    value="{{ tag }}" {{#if selected }}
-                    selected {{/if}}
-            >
-                {{ tag }}
-            </option>
-        {{/each}}
-    </select>
     <label>Количество</label><br>
     <input
             type="number"

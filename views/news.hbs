@@ -1,0 +1,19 @@
+<h1>Спарсим новости!</h1>
+<style>
+    ol {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+    }
+    ol li {
+        display: block;
+    }
+</style>
+<ol class="news">
+    {{#each news}}
+        <li>
+            <h3>{{ id }} - {{ title }}</h3>
+            <p>{{ description }}</p>
+        </li>
+    {{/each}}
+</ol>
